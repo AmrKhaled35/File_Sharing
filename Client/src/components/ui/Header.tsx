@@ -8,7 +8,7 @@ interface HeaderProps {
 }
 
 export function Header({ currentPage, onPageChange }: HeaderProps) {
-  const {  language, setLanguage } = useApp();
+  const { language, setLanguage } = useApp();
   const { t } = useTranslation();
 
   return (
@@ -16,7 +16,8 @@ export function Header({ currentPage, onPageChange }: HeaderProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center space-x-4 rtl:space-x-reverse">
-            <div className="relative">
+            {/* Hidden logo icon on mobile */}
+            <div className="relative hidden sm:block">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl blur opacity-75 animate-pulse"></div>
               <div className="relative p-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl">
                 <Share2 className="w-8 h-8 text-white" />
@@ -24,9 +25,10 @@ export function Header({ currentPage, onPageChange }: HeaderProps) {
             </div>
             <div>
               <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Share 3la ma tofrag
+                <span className="block sm:hidden">S3MT</span>
+                <span className="hidden sm:block">Share 3la ma tofrag</span>
               </h1>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-gray-600 dark:text-gray-400 hidden sm:block">
                 {t('subtitle')}
               </p>
             </div>
@@ -42,7 +44,7 @@ export function Header({ currentPage, onPageChange }: HeaderProps) {
                 }`}
               >
                 <Home className="w-4 h-4" />
-                <span>{t('home')}</span>
+                <span className="hidden sm:inline">{t('home')}</span>
               </button>
               <button
                 onClick={() => onPageChange('files')}
@@ -53,7 +55,7 @@ export function Header({ currentPage, onPageChange }: HeaderProps) {
                 }`}
               >
                 <Files className="w-4 h-4" />
-                <span>{t('files')}</span>
+                <span className="hidden sm:inline">{t('files')}</span>
               </button>
             </nav>
             <div className="flex items-center space-x-2 rtl:space-x-reverse">
@@ -64,17 +66,6 @@ export function Header({ currentPage, onPageChange }: HeaderProps) {
               >
                 <Globe className="w-5 h-5 text-gray-700 dark:text-gray-300" />
               </button>
-              {/* <button
-                onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-                className="p-3 rounded-xl bg-white/20 dark:bg-gray-800/20 hover:bg-white/30 dark:hover:bg-gray-700/30 transition-all duration-200 backdrop-blur-sm"
-                title={t('theme')}
-              >
-                {theme === 'dark' ? (
-                  <Sun className="w-5 h-5 text-yellow-500" />
-                ) : (
-                  <Moon className="w-5 h-5 text-gray-700" />
-                )}
-              </button> */}
             </div>
           </div>
         </div>
